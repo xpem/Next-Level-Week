@@ -1,3 +1,11 @@
 
 npm i react-router-dom
 npm install @types/react-router-dom
+npm i axios
+
+iniciar o servidor:
+cd C:\Users\Emanuel Martins\Documents\projetos\aulas\server-next-level-week>
+npm start
+
+(bkp das extensoes)
+code --list-extensions
