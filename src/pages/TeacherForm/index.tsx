@@ -7,8 +7,12 @@ import Textarea from "../../components/TextArea";
 import Select from "../../components/Select";
 import { stringify } from "querystring";
 import api from "../../services/api";
+import { useHistory } from "react-router-dom";
+
+
 
 function TeacherForm() {
+  const history = useHistory();
   const [name, setName] = useState("");
   const [avatar, setAvatar] = useState("");
   const [whatsapp, setWhatsapp] = useState("");
@@ -19,8 +23,8 @@ function TeacherForm() {
   const [scheduleItems, setScheduleItems] = useState([
     {
       week_day: 0,
-      from: "",
-      to: "",
+      sc_from: "",
+      sc_to: "",
     },
   ]);
 
@@ -39,6 +43,7 @@ function TeacherForm() {
       })
       .then(() => {
         alert("Cadastro realizado com sucesso!");
+        history.push("/");
       })
       .catch(() => alert("erro no cadastro!"));
     console.log({
@@ -73,8 +78,8 @@ function TeacherForm() {
       ...scheduleItems,
       {
         week_day: 0,
-        from: "",
-        to: "",
+        sc_from: "",
+        sc_to: "",
       },
     ]);
   }
@@ -158,7 +163,9 @@ function TeacherForm() {
           <fieldset>
             <legend>
               Horários Disponíveis
-              <button type="button" onClick={addNewScheduleItem}>+ Novo horário</button>
+              <button type="button" onClick={addNewScheduleItem}>
+                + Novo horário
+              </button>
             </legend>
 
             {scheduleItems.map((scheduleitem, index) => {
@@ -185,18 +192,18 @@ function TeacherForm() {
                     name="from"
                     label="Das"
                     type="time"
-                    value={scheduleitem.from}
+                    value={scheduleitem.sc_from}
                     onChange={(e) =>
-                      setScheduleItemValue(index, "from", e.target.value)
+                      setScheduleItemValue(index, "sc_from", e.target.value)
                     }
                   />
                   <Input
                     name="to"
                     label="Até"
                     type="time"
-                    value={scheduleitem.to}
+                    value={scheduleitem.sc_to}
                     onChange={(e) =>
-                      setScheduleItemValue(index, "to", e.target.value)
+                      setScheduleItemValue(index, "sc_to", e.target.value)
                     }
                   />
                 </div>
